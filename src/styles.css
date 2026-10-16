@@ -682,12 +682,40 @@ body {
     border-bottom: 1.5px solid var(--ink);
     text-decoration: none;
 }
-.qr-placeholder {
+.qr-code {
     display: flex;
     justify-content: center;
     margin: 0.5rem 0 1rem;
     padding: 1rem;
     border: 1.5px dashed rgba(96, 106, 173, 0.4);
+}
+.qr-code img {
+    display: block;
+    width: 200px;
+    max-width: 100%;
+    height: auto;
+    background: #fff;
+}
+.attire-ideas-label {
+    margin-top: 1.4rem;
+    font-family: "Caveat", cursive;
+    font-size: 1.6rem !important;
+    text-align: center;
+}
+.attire-ideas {
+    display: block;
+    margin: 0.4rem 0 0.6rem;
+    padding: 0.5rem;
+    border: 1.5px dashed rgba(96, 106, 173, 0.4);
+}
+.attire-ideas img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.qr-note a {
+    color: var(--ink);
+    font-weight: 700;
 }
 .qr-note {
     font-size: 0.78rem !important;
@@ -773,9 +801,126 @@ body {
     content: " →";
     font-style: normal;
 }
-.send-btn:hover {
+.send-btn:hover:not(:disabled) {
     background: var(--ink);
     color: #fffef8;
+}
+.send-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+/* guest lookup + group reply */
+.guest-options {
+    list-style: none;
+    margin-top: 0.4rem;
+    border: 1.5px solid rgba(96, 106, 173, 0.4);
+    border-radius: 3px;
+    background: #fffef8;
+}
+.guest-option {
+    display: flex;
+    flex-direction: column;
+    padding: 0.55rem 0.7rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.guest-option + .guest-option {
+    border-top: 1px solid rgba(96, 106, 173, 0.15);
+}
+.guest-option small {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+}
+.guest-option.active {
+    background: var(--sky);
+}
+.no-match,
+.rsvp-status {
+    margin-top: 0.6rem;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    text-align: center;
+}
+.rsvp-status {
+    margin: 0 0 1rem;
+}
+.group-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    margin-bottom: 1.2rem;
+}
+.group-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+.group-name {
+    font-family: "Caveat", cursive;
+    font-size: 1.9rem;
+    line-height: 1.1;
+}
+.link-btn {
+    background: none;
+    border: none;
+    padding: 0.2rem;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink);
+    border-bottom: 1px solid currentColor;
+    cursor: pointer;
+}
+.thankyou .link-btn {
+    margin-top: 1.1rem;
+}
+.member-list {
+    border: none;
+}
+.member-list legend {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 0.35rem;
+}
+.member-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid var(--sky);
+}
+.member-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.member-name small {
+    font-weight: 500;
+    opacity: 0.6;
+}
+.attend-toggle.small {
+    flex: 0 0 auto;
+    gap: 0.4rem;
+}
+.attend-toggle.small button {
+    flex: 0 0 auto;
+    min-width: 3.6rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
 }
 
 .thankyou {

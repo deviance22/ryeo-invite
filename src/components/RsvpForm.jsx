@@ -1,26 +1,84 @@
-import { useState } from "react";
-import { submitRsvp } from "../lib/submitRsvp.js";
+import { useEffect, useState } from "react";
+import GuestSearch from "./GuestSearch.jsx";
+import { fetchRsvp, submitRsvp } from "../lib/submitRsvp.js";
 
+const formatDate = (iso) =>
+    new Date(iso).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+    });
+
+/**
+ * Three steps: find your name, answer for each person in your group, then a
+ * thank-you with a way back to change the answer. A group that replied
+ * before sees its saved answers filled in.
+ */
 export default function RsvpForm() {
-    const [name, setName] = useState("");
-    const [attending, setAttending] = useState("yes");
-    const [guests, setGuests] = useState(1);
+    const [guestName, setGuestName] = useState("");
+    const [group, setGroup] = useState(null);
+    const [answers, setAnswers] = useState({});
     const [message, setMessage] = useState("");
+    const [savedAt, setSavedAt] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [loadError, setLoadError] = useState(false);
     const [sending, setSending] = useState(false);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState("");
+
+    // Load any earlier reply for the chosen group.
+    useEffect(() => {
+        if (!group) return;
+        let cancelled = false;
+        setLoading(true);
+        setLoadError(false);
+        fetchRsvp(group.id)
+            .then((saved) => {
+                if (cancelled || !saved) return;
+                const known = {};
+                saved.members.forEach((m) => {
+                    if (group.members.includes(m.name)) known[m.name] = m.attending;
+                });
+                setAnswers(known);
+                setMessage(saved.message || "");
+                setSavedAt(saved.updatedAt);
+            })
+            .catch(() => !cancelled && setLoadError(true))
+            .finally(() => !cancelled && setLoading(false));
+        return () => {
+            cancelled = true;
+        };
+    }, [group]);
+
+    function choose(name, g) {
+        setGuestName(name);
+        setGroup(g);
+        setAnswers({});
+        setMessage("");
+        setSavedAt(null);
+        setError("");
+    }
+
+    function reset() {
+        setGuestName("");
+        setGroup(null);
+        setSent(false);
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
         setSending(true);
         setError("");
         try {
-            await submitRsvp({
-                name: name.trim(),
-                attending,
-                guests: Number(guests) || 1,
+            const { updatedAt } = await submitRsvp({
+                groupId: group.id,
+                group: group.name,
+                members: group.members.map((name) => ({
+                    name,
+                    attending: answers[name],
+                })),
                 message: message.trim(),
             });
+            setSavedAt(updatedAt);
             setSent(true);
         } catch {
             setError("That did not send. Please try again.");
@@ -30,6 +88,7 @@ export default function RsvpForm() {
     }
 
     if (sent) {
+        const coming = group.members.filter((n) => answers[n] === "yes");
         return (
             <div className="thankyou">
                 <svg viewBox="0 0 40 40" fill="none">
@@ -39,13 +98,28 @@ export default function RsvpForm() {
                     />
                 </svg>
                 <h3 className="script">Message received!</h3>
-                <p>
-                    Thanks for writing back, can't wait to see you on the sand
-                    🐚
-                </p>
+                {coming.length ? (
+                    <p>
+                        {coming.length === group.members.length
+                            ? "See you all"
+                            : `See you, ${coming.join(" & ")}`}{" "}
+                        on the sand 🐚
+                    </p>
+                ) : (
+                    <p>We'll miss you! Thanks for letting us know 🐚</p>
+                )}
+                <button
+                    type="button"
+                    className="link-btn"
+                    onClick={() => setSent(false)}
+                >
+                    Change my reply
+                </button>
             </div>
         );
     }
+
+    const allAnswered = group?.members.every((n) => answers[n]);
 
     return (
         <div>
@@ -54,78 +128,113 @@ export default function RsvpForm() {
                 Ryeo's 1st Birthday · Nov 14 · That Little Cafe
             </p>
 
-            <form onSubmit={handleSubmit}>
-                <div className="field">
-                    <label htmlFor="guestName">Your name</label>
-                    <input
-                        type="text"
-                        id="guestName"
-                        required
-                        placeholder="Who's coming?"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-
-                <div className="field">
-                    <label id="attendLabel">Will you be there?</label>
-                    <div
-                        className="attend-toggle"
-                        role="group"
-                        aria-labelledby="attendLabel"
-                    >
+            {!group ? (
+                <GuestSearch onSelect={choose} />
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <div className="group-head">
+                        <span className="group-name">{group.name}</span>
                         <button
                             type="button"
-                            className={`attend-opt${attending === "yes" ? " active" : ""}`}
-                            aria-pressed={attending === "yes"}
-                            onClick={() => setAttending("yes")}
+                            className="link-btn"
+                            onClick={reset}
                         >
-                            Yes, I'll be there!
-                        </button>
-                        <button
-                            type="button"
-                            className={`attend-opt${attending === "no" ? " active" : ""}`}
-                            aria-pressed={attending === "no"}
-                            onClick={() => setAttending("no")}
-                        >
-                            Can't make it
+                            Not you?
                         </button>
                     </div>
-                </div>
 
-                <div className="field">
-                    <label htmlFor="guestCount">
-                        Number of guests (incl. you)
-                    </label>
-                    <input
-                        type="number"
-                        id="guestCount"
-                        min="1"
-                        value={guests}
-                        onChange={(e) => setGuests(e.target.value)}
-                    />
-                </div>
+                    {loading && (
+                        <p className="rsvp-status">Checking for an earlier reply…</p>
+                    )}
+                    {!loading && savedAt && (
+                        <p className="rsvp-status">
+                            You replied on {formatDate(savedAt)}. Change
+                            anything below and send it again.
+                        </p>
+                    )}
+                    {loadError && (
+                        <p className="rsvp-status">
+                            We couldn't check for an earlier reply. Sending
+                            now will replace it if there was one.
+                        </p>
+                    )}
 
-                <div className="field">
-                    <label htmlFor="guestMsg">A note for the birthday boy</label>
-                    <textarea
-                        id="guestMsg"
-                        placeholder="Happy 1st birthday, Ryeo! 🌊"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                    ></textarea>
-                </div>
+                    <fieldset className="field member-list" disabled={loading}>
+                        <legend>Who's coming?</legend>
+                        {group.members.map((name) => (
+                            <div className="member-row" key={name}>
+                                <span className="member-name">
+                                    {name}
+                                    {name === guestName && (
+                                        <small> (you)</small>
+                                    )}
+                                </span>
+                                <div
+                                    className="attend-toggle small"
+                                    role="group"
+                                    aria-label={`Is ${name} coming?`}
+                                >
+                                    {[
+                                        ["yes", "Yes"],
+                                        ["no", "Can't"],
+                                    ].map(([value, label]) => (
+                                        <button
+                                            key={value}
+                                            type="button"
+                                            className={
+                                                answers[name] === value
+                                                    ? "active"
+                                                    : ""
+                                            }
+                                            aria-pressed={answers[name] === value}
+                                            onClick={() =>
+                                                setAnswers((a) => ({
+                                                    ...a,
+                                                    [name]: value,
+                                                }))
+                                            }
+                                        >
+                                            {label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </fieldset>
 
-                {error && (
-                    <p className="note-sub" role="alert">
-                        {error}
-                    </p>
-                )}
+                    <div className="field">
+                        <label htmlFor="guestMsg">
+                            A note for the birthday boy
+                        </label>
+                        <textarea
+                            id="guestMsg"
+                            placeholder="Happy 1st birthday, Ryeo! 🌊"
+                            maxLength={1000}
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        ></textarea>
+                    </div>
 
-                <button type="submit" className="send-btn" disabled={sending}>
-                    Send it back to sea
-                </button>
-            </form>
+                    {error && (
+                        <p className="note-sub" role="alert">
+                            {error}
+                        </p>
+                    )}
+
+                    <button
+                        type="submit"
+                        className="send-btn"
+                        disabled={sending || loading || !allAnswered}
+                    >
+                        {savedAt ? "Update my reply" : "Send it back to sea"}
+                    </button>
+                    {!allAnswered && !loading && (
+                        <p className="rsvp-status">
+                            Pick Yes or Can't for everyone to send.
+                        </p>
+                    )}
+                </form>
+            )}
         </div>
     );
 }

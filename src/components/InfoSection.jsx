@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Modal from "./Modal.jsx";
 
+const GIFT_QR = `${import.meta.env.BASE_URL}gift-qr.png`;
+const ATTIRE_IDEAS = `${import.meta.env.BASE_URL}attire-ideas.jpg`;
+
 // Each card shows a short teaser. Tapping it opens the details in a note.
 const CARDS = [
     {
@@ -21,14 +24,31 @@ const CARDS = [
             <>
                 <p>
                     <strong>Ladies:</strong> Colorful floor-length beach dress
-                    (patterns encouraged) with your favorite beach sandals.
+                    (patterns encouraged) with your favorite beach sandals. No mini dresses.
                 </p>
                 <p>
                     <strong>Men:</strong> Colorful beach polo (patterns
-                    encouraged) with pants or shorts and your favorite summer
+                    encouraged) with pants and your favorite summer
                     shoes. No denim bottoms.
                 </p>
-                <p>*** Please avoid neutral colors, black, and white.</p>
+                <p>*** Please avoid plain black or white outfit.</p>
+                <p className="attire-ideas-label">Need ideas?</p>
+                <a
+                    className="attire-ideas"
+                    href={ATTIRE_IDEAS}
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <img
+                        src={ATTIRE_IDEAS}
+                        alt="Outfit ideas: bright floral and solid-color maxi dresses, and patterned or pastel short-sleeve shirts with light trousers"
+                        width="1080"
+                        height="1920"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </a>
+                <p className="qr-note">Tap the board to see it full size.</p>
             </>
         ),
     },
@@ -108,31 +128,21 @@ const CARDS = [
                     Your presence means the world, but if you'd like to send a
                     little something, here's Ryeo's account:
                 </p>
-                <div className="qr-placeholder" aria-hidden="true">
-                    <svg viewBox="0 0 100 100" width="140" height="140">
-                                                    <rect width="100" height="100" fill="#fdfdfd"/>
-                                                    <rect x="6" y="6" width="24" height="24" fill="none" stroke="#606aad" strokeWidth="5"/>
-                                                    <rect x="14" y="14" width="8" height="8" fill="#606aad"/>
-                                                    <rect x="70" y="6" width="24" height="24" fill="none" stroke="#606aad" strokeWidth="5"/>
-                                                    <rect x="78" y="14" width="8" height="8" fill="#606aad"/>
-                                                    <rect x="6" y="70" width="24" height="24" fill="none" stroke="#606aad" strokeWidth="5"/>
-                                                    <rect x="14" y="78" width="8" height="8" fill="#606aad"/>
-                                                    <rect x="40" y="10" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="52" y="10" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="40" y="24" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="60" y="40" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="40" y="46" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="52" y="52" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="66" y="60" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="78" y="46" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="40" y="66" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="52" y="78" width="6" height="6" fill="#606aad"/>
-                                                    <rect x="70" y="78" width="16" height="16" fill="#606aad"/>
-                                                </svg>
+                <div className="qr-code">
+                    <img
+                        src={GIFT_QR}
+                        alt="InstaPay QR code for Ryeo's account"
+                        width="200"
+                        height="200"
+                    />
                 </div>
                 <p className="qr-note">
-                    Placeholder graphic. Swap this for a real QR code image and
-                    add your GCash or bank account name here.
+                    Scan with any InstaPay bank or e-wallet app. On your phone?{" "}
+                    {/* A phone can't scan its own screen, so offer the image. */}
+                    <a href={GIFT_QR} download="ryeo-gift-qr.png">
+                        Save the QR
+                    </a>{" "}
+                    and upload it in your app.
                 </p>
             </>
         ),

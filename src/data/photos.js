@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
 const PHOTOS = Array.from({ length: 15 }, (_, i) => {
     const n = String(i + 1).padStart(2, "0");
     return {
-        src: `${base}photos/photo-${n}.jpg`,
+        src: `${base}photos/photo-${n}.jpeg`,
         alt: `Ryeo, photo ${i + 1}`,
         caption: "",
     };

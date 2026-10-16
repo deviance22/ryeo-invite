@@ -1,3 +1,5 @@
+import Sun from "./Sun.jsx";
+
 export default function Hero() {
     return (
         <section className="hero">
@@ -202,31 +204,7 @@ export default function Hero() {
                 style={{ position: "relative" }}
             >
                 <div className="sun-wrap">
-                    <svg viewBox="0 0 120 120" width="120" height="120">
-                        <g
-                            stroke="#f6cc50"
-                            strokeWidth="5"
-                            strokeLinecap="round"
-                        >
-                            <line x1="60" y1="2" x2="60" y2="18" />
-                            <line x1="60" y1="102" x2="60" y2="118" />
-                            <line x1="2" y1="60" x2="18" y2="60" />
-                            <line x1="102" y1="60" x2="118" y2="60" />
-                            <line x1="20" y1="20" x2="31" y2="31" />
-                            <line x1="89" y1="89" x2="100" y2="100" />
-                            <line x1="100" y1="20" x2="89" y2="31" />
-                            <line x1="31" y1="89" x2="20" y2="100" />
-                        </g>
-                        <circle cx="60" cy="60" r="30" fill="#fcde85" />
-                        <circle
-                            cx="60"
-                            cy="60"
-                            r="30"
-                            fill="none"
-                            stroke="#f6cc50"
-                            strokeWidth="3"
-                        />
-                    </svg>
+                    <Sun />
                 </div>
             </div>
 
@@ -296,7 +274,7 @@ export default function Hero() {
                             strokeLinecap="round"
                         />
                     </svg>
-                    <span><span className="label">Time</span>1:30 PM</span>
+                    <span><span className="label">Time</span>2:30 PM</span>
                 </div>
                 <div className="detail">
                     <svg viewBox="0 0 24 24" fill="none">

@@ -198,6 +198,11 @@ const GROUPS = [
     name: "Tito GR and family",
     members: ["Gerald Urbanozo", "Zarah Urbanozo", "Gia Urbanozo"]
   },
+  {
+    id: "jhuna",
+    name: "Ninang Jhunabeth",
+    members: ["Jhunabeth", "Patrick"]
+  },
 ];
 
 export default GROUPS;

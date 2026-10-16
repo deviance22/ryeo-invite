@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import GuestSearch from "./GuestSearch.jsx";
+import SunLoader from "./SunLoader.jsx";
 import { fetchRsvp, submitRsvp } from "../lib/submitRsvp.js";
+
+// Keep the loader up at least this long so a quick reply doesn't flash it.
+const MIN_LOADING_MS = 700;
+
+const atLeast = (promise) =>
+    Promise.all([
+        promise,
+        new Promise((r) => setTimeout(r, MIN_LOADING_MS)),
+    ]).then(([value]) => value);
 
 const formatDate = (iso) =>
     new Date(iso).toLocaleDateString(undefined, {
@@ -29,9 +39,8 @@ export default function RsvpForm() {
     useEffect(() => {
         if (!group) return;
         let cancelled = false;
-        setLoading(true);
         setLoadError(false);
-        fetchRsvp(group.id)
+        atLeast(fetchRsvp(group.id))
             .then((saved) => {
                 if (cancelled || !saved) return;
                 const known = {};
@@ -52,6 +61,8 @@ export default function RsvpForm() {
     function choose(name, g) {
         setGuestName(name);
         setGroup(g);
+        // Set here, not in the effect, so the form never shows before the loader.
+        setLoading(true);
         setAnswers({});
         setMessage("");
         setSavedAt(null);
@@ -69,7 +80,7 @@ export default function RsvpForm() {
         setSending(true);
         setError("");
         try {
-            const { updatedAt } = await submitRsvp({
+            const { updatedAt } = await atLeast(submitRsvp({
                 groupId: group.id,
                 group: group.name,
                 members: group.members.map((name) => ({
@@ -77,7 +88,7 @@ export default function RsvpForm() {
                     attending: answers[name],
                 })),
                 message: message.trim(),
-            });
+            }));
             setSavedAt(updatedAt);
             setSent(true);
         } catch {
@@ -130,9 +141,14 @@ export default function RsvpForm() {
 
             {!group ? (
                 <GuestSearch onSelect={choose} />
+            ) : loading ? (
+                <SunLoader label="Checking the tides for your reply…" />
+            ) : sending ? (
+                <SunLoader label="Sending your note out to sea…" />
             ) : (
                 <form onSubmit={handleSubmit}>
                     <div className="group-head">
+                        <span className="group-label">You're with</span>
                         <span className="group-name">{group.name}</span>
                         <button
                             type="button"
@@ -143,10 +159,7 @@ export default function RsvpForm() {
                         </button>
                     </div>
 
-                    {loading && (
-                        <p className="rsvp-status">Checking for an earlier reply…</p>
-                    )}
-                    {!loading && savedAt && (
+                    {savedAt && (
                         <p className="rsvp-status">
                             You replied on {formatDate(savedAt)}. Change
                             anything below and send it again.
@@ -159,7 +172,7 @@ export default function RsvpForm() {
                         </p>
                     )}
 
-                    <fieldset className="field member-list" disabled={loading}>
+                    <fieldset className="field member-list">
                         <legend>Who's coming?</legend>
                         {group.members.map((name) => (
                             <div className="member-row" key={name}>
@@ -224,11 +237,11 @@ export default function RsvpForm() {
                     <button
                         type="submit"
                         className="send-btn"
-                        disabled={sending || loading || !allAnswered}
+                        disabled={!allAnswered}
                     >
                         {savedAt ? "Update my reply" : "Send it back to sea"}
                     </button>
-                    {!allAnswered && !loading && (
+                    {!allAnswered && (
                         <p className="rsvp-status">
                             Pick Yes or Can't for everyone to send.
                         </p>

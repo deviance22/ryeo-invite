@@ -923,6 +923,35 @@ body {
     font-size: 0.8rem;
 }
 
+.sun-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    min-height: 260px;
+    outline: none;
+}
+.sun-loader-sun {
+    animation: sunPulse 1s ease-in-out infinite;
+}
+.sun-loader-sun svg {
+    display: block;
+    animation: sunSpin 3.5s linear infinite;
+}
+@keyframes sunSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.sun-loader p {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
 .thankyou {
     text-align: center;
     padding: 1rem 0 0.5rem;
@@ -969,6 +998,7 @@ footer .fine {
 
 @media (prefers-reduced-motion: reduce) {
     .sun-wrap,
+    .sun-loader-sun svg,
     .bottle-btn,
     .wave-back,
     .wave-front,

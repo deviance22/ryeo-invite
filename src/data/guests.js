@@ -90,7 +90,7 @@ const GROUPS = [
   {
     id: "renz",
     name: "Ninong Renz and Kye",
-    members: ["Renz Jervain Rillon", "Eirohna Kye Dumpit"],
+    members: ["Renz Jervain Rillon", "Eirhona Kye Dumpit"],
   },
   {
     id: "chu",

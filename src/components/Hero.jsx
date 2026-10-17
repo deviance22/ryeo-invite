@@ -274,7 +274,7 @@ export default function Hero() {
                             strokeLinecap="round"
                         />
                     </svg>
-                    <span><span className="label">Time</span>2:30 PM</span>
+                    <span><span className="label">Time</span>1:30 PM</span>
                 </div>
                 <div className="detail">
                     <svg viewBox="0 0 24 24" fill="none">

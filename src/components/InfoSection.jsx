@@ -24,14 +24,14 @@ const CARDS = [
             <>
                 <p>
                     <strong>Ladies:</strong> Colorful floor-length beach dress
-                    (patterns encouraged) with your favorite beach sandals.
+                    (patterns encouraged) with your favorite beach sandals. No mini dresses.
                 </p>
                 <p>
                     <strong>Men:</strong> Colorful beach polo (patterns
-                    encouraged) with pants or shorts and your favorite summer
+                    encouraged) with pants and your favorite summer
                     shoes. No denim bottoms.
                 </p>
-                <p>*** Please avoid neutral colors, black, and white.</p>
+                <p>*** Please avoid plain black or white.</p>
                 <p className="attire-ideas-label">Need ideas?</p>
                 <a
                     className="attire-ideas"

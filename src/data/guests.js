@@ -205,7 +205,7 @@ const GROUPS = [
   {
     id: "lucet",
     name: "Lola Lucet",
-    members: ["Lucet"],
+    members: ["Lucet Bulosan"],
   },
   {
     id: "lorie",

@@ -148,7 +148,6 @@ export default function RsvpForm() {
             ) : (
                 <form onSubmit={handleSubmit}>
                     <div className="group-head">
-                        <span className="group-label">You're with</span>
                         <span className="group-name">{group.name}</span>
                         <button
                             type="button"

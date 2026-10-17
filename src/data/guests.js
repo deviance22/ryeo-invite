@@ -175,7 +175,7 @@ const GROUPS = [
       "Nathaniel Cayaba",
       "Ming Cayaba",
       "Melvin Moralde",
-      "Kristine Moralde",
+      "Kristine Cayaba-Moralde",
       "Czarinna Balajadia",
       "Monica Cayaba-Bangloy",
       "Oliver Bangloy",
@@ -261,7 +261,7 @@ const GROUPS = [
   {
     id: "doay",
     name: "Lola Doay",
-    members: ["Lola Doay"],
+    members: ["Doay Pagaden"],
   },
   {
     id: "lianne",
@@ -322,6 +322,26 @@ const GROUPS = [
     id: "susan",
     name: "Tita Susan and Family",
     members: ["Susan Lauro-Putranto", "Nicolas Putranto", "Raphael Putranto"],
+  },
+  {
+    id: "ron",
+    name: "Tito Ron",
+    members: ["Ron Agbo"],
+  },
+  {
+    id: "marwen",
+    name: "Tito Marwen",
+    members: ["Marwen Sevilla"],
+  },
+  {
+    id: "hilda",
+    name: "Tita Hilda and Family",
+    members: ["Hilda Campos", "Richard Campos", "Nathaniel Edrian Campos"],
+  },
+  {
+    id: "uccp",
+    name: "UCCP",
+    members: ["UCCP1", "UCCP2", "UCCP3"],
   },
 ];
 

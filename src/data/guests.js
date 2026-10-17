@@ -199,8 +199,8 @@ const GROUPS = [
   },
   {
     id: "mina",
-    name: "Lola Mina and Ate Cata",
-    members: ["Myrnna Banton", "Cata"],
+    name: "Lola Mina and Ate Kata",
+    members: ["Myrnna", "Katara"],
   },
   {
     id: "lucet",
@@ -266,7 +266,7 @@ const GROUPS = [
   {
     id: "lianne",
     name: "Tita Lianne",
-    members: ["Lianne "],
+    members: ["Lianne Ashley Gamido"],
   },
   {
     id: "chach",

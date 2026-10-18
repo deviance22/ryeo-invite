@@ -343,6 +343,11 @@ const GROUPS = [
     name: "UCCP",
     members: ["UCCP1", "UCCP2", "UCCP3"],
   },
+  {
+    id: "levin",
+    name: "Tito Levin",
+    members: ["Levin Estrada"],
+  },
 ];
 
 export default GROUPS;

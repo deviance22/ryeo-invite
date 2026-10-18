@@ -1010,3 +1010,33 @@ footer .fine {
         transform: none !important;
     }
 }
+/* keep the hero text above the decorative surfboards and shells */
+.hero > .eyebrow,
+.hero > .headline,
+.hero > .subhead,
+.hero > .detail-strip {
+    position: relative;
+    z-index: 1;
+}
+
+/* phones and small tablets: stack date, time and place instead of wrapping */
+@media (max-width: 820px) {
+    .detail-strip {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        max-width: 380px;
+    }
+    .detail {
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.3rem;
+        padding: 0.9rem 1rem;
+        text-align: center;
+        border-left: none;
+        border-top: 1.5px dashed rgba(96, 106, 173, 0.45);
+    }
+    .detail:first-child {
+        border-top: none;
+    }
+}

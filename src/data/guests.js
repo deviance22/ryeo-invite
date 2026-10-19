@@ -83,7 +83,7 @@ const GROUPS = [
     name: "Ninang Olive and Family",
     members: [
       "Ninong Haridas Pascua",
-      "Ninang Olive Galang-Pascua",
+      "Ninang Olivia Galang-Pascua",
       "Kavi Pascua",
     ],
   },
@@ -347,6 +347,16 @@ const GROUPS = [
     id: "levin",
     name: "Tito Levin",
     members: ["Levin Estrada"],
+  },
+  {
+    id: "sam",
+    name: "Tita Sam and Diosa",
+    members: ["Atty. Samantha Poblacion", "Diosa Quinones"],
+  },
+  {
+    id: "marik",
+    name: "Tita Marik and Jens",
+    members: ["Marik Montalvan", "Jens Sundqvist"],
   },
 ];
 

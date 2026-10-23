@@ -231,7 +231,7 @@ const GROUPS = [
   {
     id: "gr",
     name: "Tito GR and family",
-    members: ["Gerald Urbanozo", "Zarah Urbanozo", "Gia Urbanozo"],
+    members: ["Gerald Urbanozo", "Zarah Urbanozo", "Gia Urbanozo", "Leah Begtang"],
   },
   {
     id: "jhuna",
@@ -357,6 +357,11 @@ const GROUPS = [
     id: "marik",
     name: "Tita Marik and Jens",
     members: ["Marik Montalvan", "Jens Sundqvist"],
+  },
+  {
+    id: "ezekiel",
+    name: "Tito Ezekiel",
+    members: ["Ezekiel Onido"],
   },
 ];
 

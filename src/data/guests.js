@@ -166,7 +166,7 @@ const GROUPS = [
   {
     id: "ayriz",
     name: "Tita Ayriz and Family",
-    members: ["Ayriz Yangco", "Teemo Yangco", "Ahyman Yangco"],
+    members: ["Ayriz Yangco", "Timo Yangco", "Ayman Yangco"],
   },
   {
     id: "cayaba",
@@ -333,11 +333,11 @@ const GROUPS = [
     name: "Tito Marwen",
     members: ["Marwen Sevilla"],
   },
-  {
-    id: "hilda",
-    name: "Tita Hilda and Family",
-    members: ["Hilda Campos", "Richard Campos", "Nathaniel Edrian Campos"],
-  },
+  // {
+  //   id: "hilda",
+  //   name: "Tita Hilda and Family",
+  //   members: ["Hilda Campos", "Richard Campos", "Nathaniel Edrian Campos"],
+  // },
   {
     id: "uccp",
     name: "UCCP",

@@ -359,9 +359,24 @@ const GROUPS = [
     members: ["Marik Montalvan", "Jens Sundqvist"],
   },
   {
-    id: "ezekiel",
-    name: "Tito Ezekiel",
-    members: ["Ezekiel Onido"],
+    id: "dwight",
+    name: "Tito Dwight and Tita Crissy",
+    members: ["Dwight Douglas Siddayao", "Crissy Siddayao"],
+  },
+  {
+    id: "dom",
+    name: "Lolo Dom and Lola Lon",
+    members: ["Dominador Urbanozo", "Lonelia Urbanozo"],
+  },
+  {
+    id: "josephine",
+    name: "Lola Josi",
+    members: ["Josephine Sarmiento"],
+  },
+  {
+    id: "bong",
+    name: "Lolo Bong and Lola Emellie",
+    members: ["Rodelito Pallasigue", "Emellie Pallasigue"],
   },
 ];
 

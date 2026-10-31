@@ -378,6 +378,21 @@ const GROUPS = [
     name: "Lolo Bong and Lola Emellie",
     members: ["Rodelito Pallasigue", "Emellie Pallasigue"],
   },
+  {
+    id: "joel",
+    name: "Lolo Joel and Family",
+    members: ["Joel Garlejo", "Mabel Javier", "Christian Garlejo", "Jovelyn Garlejo", "Elisha Garlejo", "Enzo Garlejo", "Alyssa Garlejo", "Lauren Garlejo"],
+  },
+  {
+    id: "dreen",
+    name: "Tita Dreen and Friends",
+    members: ["Dreen Clave", "Baby Kenzo", "Kathleen Carullo", "Ledijah Pinmiliw", "Jianne Soriano"],
+  },
+  {
+    id: "kris",
+    name: "Tita Kris",
+    members: ["Kris Kim", "Haeun Kim"],
+  },
 ];
 
 export default GROUPS;

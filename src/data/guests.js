@@ -393,6 +393,11 @@ const GROUPS = [
     name: "Tita Kris",
     members: ["Kris Kim", "Haeun Kim"],
   },
+  {
+    id: "menor",
+    name: "Tita Melissa and Family",
+    members: ["Ashana Mira Menor", "El-jhay Khate Menor", "Em-jhay Khyzer Menor", "Estella Pollensa", "Nancy Villafania", "Melissa Menor", "Marc Jone Menor", "Marlou Menor"],
+  },
 ];
 
 export default GROUPS;

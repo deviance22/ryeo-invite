@@ -386,7 +386,7 @@ const GROUPS = [
   {
     id: "dreen",
     name: "Tita Dreen and Friends",
-    members: ["Dreen Clave", "Baby Kenzo", "Kathleen Carullo", "Ledijah Pinmiliw", "Jianne Soriano"],
+    members: ["Dreen Clave", "Baby Kenzo", "Joven Tapallas Jr.", "Kathleen Carullo", "Ledijah Pinmiliw", "Jianne Soriano"],
   },
   {
     id: "kris",

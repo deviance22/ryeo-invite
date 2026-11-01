@@ -19,7 +19,6 @@ const GROUPS = [
     members: [
       "Ryan Bamba",
       "Cathlea Bamba",
-      "Ryeo Bamba",
     ],
   },
   {

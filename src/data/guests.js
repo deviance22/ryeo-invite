@@ -14,6 +14,15 @@
 // the names in it.
 const GROUPS = [
   {
+    id: "ryan",
+    name: "Daddy and Mommy",
+    members: [
+      "Ryan Bamba",
+      "Cathlea Bamba",
+      "Ryeo Bamba",
+    ],
+  },
+  {
     id: "bamba",
     name: "Bamba Family",
     members: [

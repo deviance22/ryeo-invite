@@ -406,6 +406,15 @@ const GROUPS = [
     name: "Tita Melissa and Family",
     members: ["Ashana Mira Menor", "El-jhay Khate Menor", "Em-jhay Khyzer Menor", "Estella Pollensa", "Nancy Villafania", "Melissa Menor", "Marc Jone Menor", "Marlou Menor"],
   },
+  {
+    id: "louanne",
+    name: "Tita Louane and family",
+    members: ["Louane T. Ateo-an",
+    "Marc Dominic L. Ateo-an",
+    "Liana Maeve T. Ateo-an",
+    "Rembrandt Kean T. Ateo-an",
+    "Joan T. Tan"],
+  },
 ];
 
 export default GROUPS;

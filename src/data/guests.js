@@ -415,6 +415,11 @@ const GROUPS = [
     "Rembrandt Kean T. Ateo-an",
     "Joan T. Tan"],
   },
+  {
+    id: "jun",
+    name: "Tito Jun and Family",
+    members: ["Leonardo Menor Jr.", "Teresa Menor", "Kayan Menor", "Kaden Menor"],
+  },
 ];
 
 export default GROUPS;

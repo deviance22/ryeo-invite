@@ -420,6 +420,11 @@ const GROUPS = [
     name: "Tito Jun and Family",
     members: ["Leonardo Menor Jr.", "Teresa Menor", "Kayan Menor", "Kaden Menor"],
   },
+  {
+    id: "edrian",
+    name: "Tito Edrian and Tita Ysa",
+    members: ["Edrian Cayabyab", "Ysa Charisse Camba"],
+  },
 ];
 
 export default GROUPS;

@@ -435,6 +435,11 @@ const GROUPS = [
     name: "Tito Nathaniel",
     members: ["Nathaniel Abella"],
   },
+  {
+    id: "bless",
+    name: "Tita Bless",
+    members: ["Blessyl Orias"],
+  },
 ];
 
 export default GROUPS;

@@ -455,6 +455,11 @@ const GROUPS = [
     name: "Toni and Friends",
     members: ["Tonie Eulin", "Joeleanne Fransico", "Bernadette Fideles", "Krissa Catbagan", "Matteo Catbagan"],
   },
+  {
+    id: "jessie",
+    name: "Tito Jessie and Tito Paul",
+    members: ["Jessie Fujiwara", "Paul Banton"],
+  },
 ];
 
 export default GROUPS;
